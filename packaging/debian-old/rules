@@ -5,20 +5,11 @@
 #export DH_VERBOSE=1
 #export DH_OPTIONS=-v
 
-
 PREFIX = /usr
 
 %:
+	# Adding the required helpers
 	dh $@ --with=python2
-
-override_dh_auto_build:
-	./tools/po-compile.sh
-	dh_auto_build
-
-override_dh_auto_clean:
-	./tools/clean.sh
-	debconf-updatepo
-	dh_auto_clean
 
 override_dh_auto_install:
 	dh_auto_install -- --prefix=$(PREFIX) --install-lib=$(PREFIX)/share/solaar/lib

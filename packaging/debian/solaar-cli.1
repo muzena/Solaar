@@ -1,0 +1,66 @@
+.TH solaar-cli 1 "June 06, 2014" solaar
+.SH NAME
+solaar-cli \- wireless Logitech device manager
+.SH SYNOPSIS
+.B solaar-cli
+[\fIoptions\fP]
+.BR show | config | pair | unpair
+.SH DESCRIPTION
+.B solaar-cli
+is a command-line device manager for Logitech wireless devices
+(keyboards and mice). It supports many recent Unifying devices, allows
+pairing and unpairing devices, querying the battery level, and
+configuring various features such as smooth scrolling, side
+scrolling...
+.PP
+.SH OPTIONS
+.B solaar-cli
+accepts the following options:
+.TP
+.BR \-h ", " \-\-help
+Displays a brief help message and quits. (This option is also
+available on all commands.)
+.TP
+.BR \-d ", " \-\-debug
+Starts the graphical device manager and prints logging messages during
+execution.
+.TP
+.BR \-V ", " \-\-version
+Displays the program's version number and quits.
+.TP
+.BR \-D " <\fIpath\fP>, " \-\-hidraw " <\fIpath\fP>"
+Specifies the Unifying receiver to use; by default the first detected
+receiver is used. \fIpath\fP will typically be of the form
+\fB/dev/hidraw2\fP.
+.SH COMMANDS
+.TP
+.BR show " [" \-h "] [" \-v "] [\fIdevice\fP]"
+Displays the available information on the given device (or all if none
+is specified). \fB\-v\fP displays all the available information,
+verbosely. \fIdevice\fP can be \fBreceiver\fP to display information
+on the receivers, \fBall\fP to display information about all devices,
+a device number (as indicated in the list of all devices), a device
+serial number, or at least three characters of a device name.
+.TP
+.BR config " [" \-h "] " \fIdevice\fP " [\fIsetting\fP [\fIvalue\fP]]"
+Displays or modifies configuration settings on the give
+device. \fIdevice\fP can be a device number (as indicated in the list
+of all devices given by \fBshow\fP), a device serial number, or at
+least three characters of a device name. If no configuration setting
+is specified, all settings for the device are displayed, along with
+possible values.
+.TP
+.BR pair " [" \-h "]"
+Pairs a new device to an attached receiver.
+.TP
+.BR unpair " [" \-h "] \fIdevice\fP"
+Unpairs the given device. \fIdevice\fP can be a device number (as
+indicated in the list of all devices given by \fBshow\fP), a device
+serial number, or at least three characters of a device name.
+.SH AUTHORS
+\fBsolaar-cli\fP was written by Daniel Pavel.
+
+This manual page was written by Stephen Kitt <skitt@debian.org>, for
+the Debian GNU/Linux system (but may be used by others). It was last
+modified for \fBsolaar\fP version 0.9.2.
+
