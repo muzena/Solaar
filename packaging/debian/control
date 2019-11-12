@@ -8,7 +8,7 @@ Build-Depends-Indep: python,
 Standards-Version: 3.9.7
 Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/solaar.git
 Vcs-Git: https://anonscm.debian.org/git/collab-maint/solaar.git
-Homepage: http://pwr.github.io/Solaar
+Homepage: http://pwr-solaar.github.io/Solaar
 X-Python-Version: >= 2.7
 X-Python3-Version: >= 3.2
 
