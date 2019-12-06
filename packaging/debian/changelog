@@ -1,3 +1,10 @@
+solaar (1.0.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release. Closes: #819687, #851125, #933691.
+  * Standards-Version 4.4.0, no change required.
+
+ -- Stephen Kitt <skitt@debian.org>  Thu, 15 Aug 2019 20:58:19 +0200
+
 solaar (0.9.2-2) unstable; urgency=low
 
   * Fixes for lintian warnings.
