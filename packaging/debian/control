@@ -3,14 +3,14 @@ Maintainer: Stephen Kitt <skitt@debian.org>
 Section: misc
 Priority: optional
 Build-Depends: debhelper (>= 9)
-Build-Depends-Indep: python,
+Build-Depends-Indep: dh-python,
+                     python,
                      po-debconf,
 Standards-Version: 3.9.7
 Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/solaar.git
 Vcs-Git: https://anonscm.debian.org/git/collab-maint/solaar.git
 Homepage: http://pwr-solaar.github.io/Solaar
-X-Python-Version: >= 2.7
-X-Python3-Version: >= 3.2
+Rules-Requires-Root: no
 
 Package: solaar
 Architecture: all
@@ -21,8 +21,7 @@ Depends: ${misc:Depends},
          ${python:Depends},
          python-pyudev,
          python-gi,
-         gir1.2-gtk-3.0,
-         gnome-icon-theme | oxygen-icon-theme
+         gir1.2-gtk-3.0
 Recommends: gir1.2-notify-0.7,
             consolekit | systemd,
             python-dbus,
@@ -40,8 +39,7 @@ Section: gnome
 Depends: ${misc:Depends},
          solaar (= ${source:Version}),
          gir1.2-appindicator3-0.1,
-         gnome-shell | unity,
-         gnome-icon-theme
+         gnome-shell | unity
 Enhances: solaar
 Description: GNOME Shell/Unity integration for Solaar
  Solaar is a Linux device manager for Logitech's Unifying Receiver wireless
