@@ -1,32 +1,21 @@
-# These templates have been reviewed by the debian-l10n-english
-# team
-#
-# If modifications/additions/rewording are needed, please ask
-# debian-l10n-english@lists.debian.org for advice.
-#
-# Even minor modifications require translation updates and such
-# changes should be coordinated with translators and reviewers.
-
 Template: solaar/use_plugdev_group
 Type: boolean
 Default: false
-#flag:comment:3
-# Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
 _Description: Use plugdev group?
- Please specify how non-root users should be given access to the Logitech
- receiver devices.
+ By default, the Logitech receiver devices are only accessible by the root user.
  .
- If systemd or consolekit are in use, they can apply ACLs to make them
- accessible via Solaar for the user logged in on the current seat. Right
- now, ${SEAT_DAEMON_STATUS} daemon is running.
+ To allow access to regular users (through solaar), the needed ACLs can be
+ applied, either by the ConsoleKit or systemd daemon, to the current seat
+ (logged-in user).
+ Right now, ${SEAT_DAEMON_STATUS} daemon is running.
  .
- If neither of these daemons is in use, or if the receiver should also be
- accessible for remotely logged in users, it is possible to grant access
- for members of the "plugdev" system group.
+ If neither of these daemons is installed on your system, or you want to make
+ the receiver accessible to ssh logged-in through ssh, members of the 'plugdev'
+ system group can be given access to the receiver devices.
  .
- If you do use the "plugdev" group, don't forget to make sure all the
- appropriate users are members of that group. You can add new members to
- the group by running, as root:
-     adduser <username> plugdev
- For the group membership to take effect, the affected users need to log
- out and back in again.
+ If you do use the 'plugdev' group, don't forget to make sure all your desktop
+ users are members of the plugdev system group. You can add new members to the
+ group by running, as root:
+     gpasswd --add <username> plugdev
+ For the group membership to take effect, the affected users have to log-out
+ and log-in again.
