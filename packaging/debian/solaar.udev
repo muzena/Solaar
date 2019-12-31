@@ -34,31 +34,29 @@ ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c521", GOTO="solaar_apply"
 ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c525", GOTO="solaar_apply"
 ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c534", GOTO="solaar_apply"
 
+# Lightspeed receivers
+ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c539", GOTO="solaar_apply"
+ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c53a", GOTO="solaar_apply"
+ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c53f", GOTO="solaar_apply"
+
 # Lenovo nano receiver
 ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="6042", GOTO="solaar_apply"
 
+
 GOTO="solaar_end"
 
-#
-#
-#
 LABEL="solaar_apply"
 
 # don't apply to the paired peripherals, just the receivers
 DRIVERS=="logitech-djdevice|logitech-hidpp-device", GOTO="solaar_end"
 
-# if the package configuration does not want the plugdev group, don't change the
-# group and access mode
-PROGRAM="/usr/bin/debconf-show solaar", RESULT=="*use_plugdev_group: false*", GOTO="solaar_no_plugdev"
-MODE="0660", GROUP="plugdev"
-
-LABEL="solaar_no_plugdev"
-# tags for systemd/consolekit, they will apply the right ACLs for seated users
+# Allow any seated user to access the receiver.
+# uaccess: modern ACL-enabled udev
+# udev-acl: for Ubuntu 12.10 and older
 TAG+="uaccess", TAG+="udev-acl"
 
-#
-#
-#
+# Grant members of the "plugdev" group access to receiver (useful for SSH users)
+#MODE="0660", GROUP="plugdev"
 
 LABEL="solaar_end"
 # vim: ft=udevrules
