@@ -1,0 +1,76 @@
+# German debconf translation of solaar.
+# Copyright (C) Chris Leick <c.leick@vollbio.de>, 2014.
+# This file is distributed under the same license as the solaar package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: solaar 0.9.2+dfsg-4\n"
+"Report-Msgid-Bugs-To: solaar@packages.debian.org\n"
+"POT-Creation-Date: 2014-10-10 07:11+0200\n"
+"PO-Revision-Date: 2014-10-10 18:22+0100\n"
+"Last-Translator: Chris Leick <c.leick@vollbio.de>\n"
+"Language-Team: German <debian-l10n-german@lists.debian.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid "Use plugdev group?"
+msgstr "Soll die Gruppe »plugdev« benutzt werden?"
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"Please specify how non-root users should be given access to the Logitech "
+"receiver devices."
+msgstr ""
+"Bitte geben Sie an, wie Nicht-Root-Benutzern Zugriff auf die Logitech-"
+"Empfangsgeräte gewährt werden soll."
+
+#. Type: boolean
+#. Description
+#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
+#: ../solaar.templates:2001
+msgid ""
+"If systemd or consolekit are in use, they can apply ACLs to make them "
+"accessible via Solaar for the user logged in on the current seat. Right now, "
+"${SEAT_DAEMON_STATUS} daemon is running."
+msgstr ""
+"Falls Systemd oder Consolekit benutzt werden, können sie ACLs anwenden, um "
+"dem Benutzer, der über den aktuellen Platz angemeldet ist, über Solaar "
+"Zugriff darauf zu geben. Im Moment läuft der Daemon ${SEAT_DAEMON_STATUS}."
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"If neither of these daemons is in use, or if the receiver should also be "
+"accessible for remotely logged in users, it is possible to grant access for "
+"members of the \"plugdev\" system group."
+msgstr ""
+"Falls keiner dieser Daemons benutzt wird oder auch aus der Ferne angemeldete "
+"Anwender Zugriff auf den Empfänger haben sollen, ist es möglich, Mitgliedern "
+"der Systemgruppe »plugdev« Zugriff zu gewähren."
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"If you do use the \"plugdev\" group, don't forget to make sure all the "
+"appropriate users are members of that group. You can add new members to the "
+"group by running, as root:\n"
+"    adduser <username> plugdev\n"
+"For the group membership to take effect, the affected users need to log out "
+"and back in again."
+msgstr ""
+"Vergessen Sie nicht, falls Sie die Gruppe »plugdev« verwenden, dass sie "
+"sicherstellen müssen, dass alle dazugehörigen Anwender dieser Gruppe "
+"angehören müssen. Sie können der Gruppe als Root neue Mitglieder hinzufügen, "
+"indem Sie Folgendes ausführen:\n"
+"    adduser <Benutzername> plugdev\n"
+"Damit die Gruppenmitgliedschaft wirksam wird, müssen sich die betroffenen "
+"Benutzer ab- und wieder anmelden."

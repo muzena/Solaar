@@ -1,0 +1,120 @@
+# Italian translation of solaar debconf messages.
+# Copyright (C) 2014, solaar package's copyright holder.
+# This file is distributed under the same license as the solaar package.
+# Beatrice Torracca <beatricet@libero.it>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: solaar\n"
+"Report-Msgid-Bugs-To: solaar@packages.debian.org\n"
+"POT-Creation-Date: 2014-10-10 07:11+0200\n"
+"PO-Revision-Date: 2014-10-12 14:42+0200\n"
+"Last-Translator: Beatrice Torracca <beatricet@libero.it>\n"
+"Language-Team: Italian <debian-l10n-italian@lists.debian.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid "Use plugdev group?"
+msgstr "Usare il gruppo plugdev?"
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"Please specify how non-root users should be given access to the Logitech "
+"receiver devices."
+msgstr ""
+"Specificare come debba essere dato l'accesso ai dispositivi ricevitori "
+"Logitech agli utenti diversi da root."
+
+#. Type: boolean
+#. Description
+#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
+#: ../solaar.templates:2001
+msgid ""
+"If systemd or consolekit are in use, they can apply ACLs to make them "
+"accessible via Solaar for the user logged in on the current seat. Right now, "
+"${SEAT_DAEMON_STATUS} daemon is running."
+msgstr ""
+"Se sono in uso systemd o consolekit, possono applicare ACL per renderli "
+"accessibili attraverso Solaar all'utente collegato alla postazione attuale. "
+"In questo momento è in esecuzione il demone ${SEAT_DAEMON_STATUS}."
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"If neither of these daemons is in use, or if the receiver should also be "
+"accessible for remotely logged in users, it is possible to grant access for "
+"members of the \"plugdev\" system group."
+msgstr ""
+"Se nessuno di questi demoni è in uso o se il ricevitore deve essere "
+"accessibile anche a chi fa il login remoto, si può consentire l'accesso al "
+"gruppo di sistema «plugdev»."
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"If you do use the \"plugdev\" group, don't forget to make sure all the "
+"appropriate users are members of that group. You can add new members to the "
+"group by running, as root:\n"
+"    adduser <username> plugdev\n"
+"For the group membership to take effect, the affected users need to log out "
+"and back in again."
+msgstr ""
+"Se viene scelto usare il gruppo «plugdev» non ci si dimentichi di "
+"controllare che tutti gli utenti appropriati siano membri di tale gruppo. Si "
+"possono aggiungere nuovi membri al gruppo eseguendo da root:\n"
+"    adduser <username> plugdev\n"
+"Affinché il cambio di appartenenza al gruppo abbia effetto, è necessario che "
+"gli utenti interessati facciano il logout e quindi nuovamente il login."
+
+#~ msgid ""
+#~ "By default, the Logitech receiver devices are only accessible by the root "
+#~ "user."
+#~ msgstr ""
+#~ "I dispositivi ricevitori Logitech sono accessibili in modo predefinito "
+#~ "solo dall'utente root."
+
+#~ msgid ""
+#~ "To allow access to regular users (through solaar), the needed ACLs can be "
+#~ "applied, either by the ConsoleKit or systemd daemon, to the current seat "
+#~ "(logged-in user). Right now, ${SEAT_DAEMON_STATUS} daemon is running."
+#~ msgstr ""
+#~ "Per permettere l'accesso agli utenti regolari, (attraverso solaar) "
+#~ "possono essere applicate le necessarie ACL, usando ConsoleKit oppure il "
+#~ "demone systemd, alla postazione attuale (l'utente che ha fatto il login). "
+#~ "In questo momento è in esecuzione il demone ${SEAT_DAEMON_STATUS}."
+
+#~ msgid ""
+#~ "If neither of these daemons is installed on your system, or you want to "
+#~ "make the receiver accessible to ssh logged-in through ssh, members of the "
+#~ "'plugdev' system group can be given access to the receiver devices."
+#~ msgstr ""
+#~ "Se nessuno di questi demoni è installato nel sistema o si desidera "
+#~ "rendere accessibile il ricevitore a chi fa il login via ssh, si può dare "
+#~ "l'accesso ai ricevitori al gruppo di sistema «plugdev»."
+
+#~ msgid ""
+#~ "If you do use the 'plugdev' group, don't forget to make sure all your "
+#~ "desktop users are members of the plugdev system group. You can add new "
+#~ "members to the group by running, as root:\n"
+#~ "    gpasswd --add <username> plugdev\n"
+#~ "For the group membership to take effect, the affected users have to log-"
+#~ "out and log-in again."
+#~ msgstr ""
+#~ "Se viene scelto usare il gruppo «plugdev» non ci si dimentichi di "
+#~ "controllare che tutti gli utenti desktop siano membri del gruppo di "
+#~ "sistema plugdev. Si può aggiungere nuovi membri al gruppo eseguendo da "
+#~ "root:\n"
+#~ "    gpasswd --add <nome_utente> plugdev\n"
+#~ "Affinché il cambio di appartenenza al gruppo abbia effetto, è necessario "
+#~ "che gli utenti interessati facciano il logout e quindi nuovamente il "
+#~ "login."

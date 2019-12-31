@@ -1,0 +1,104 @@
+# solaar po-debconf translation to Spanish
+# Copyright (C) 2014 Software in the Public Interest
+# This file is distributed under the same license as the solaar package.
+#
+# Changes:
+# - Initial translation
+# Camaleón <noelamac@gmail.com>, 2014
+#
+# - Updates
+#
+#
+# Traductores, si no conocen el formato PO, merece la pena leer la
+# documentación de gettext, especialmente las secciones dedicadas a este
+# formato, por ejemplo ejecutando:
+# info -n '(gettext)PO Files'
+# info -n '(gettext)Header Entry'
+#
+# Equipo de traducción al español, por favor lean antes de traducir
+# los siguientes documentos:
+#
+# - El proyecto de traducción de Debian al español
+# http://www.debian.org/intl/spanish/
+# especialmente las notas y normas de traducción en
+# http://www.debian.org/intl/spanish/notas
+#
+# - La guía de traducción de po's de debconf:
+# /usr/share/doc/po-debconf/README-trans
+# o http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: solaar\n"
+"Report-Msgid-Bugs-To: solaar@packages.debian.org\n"
+"POT-Creation-Date: 2014-10-10 07:11+0200\n"
+"PO-Revision-Date: 2014-12-05 16:49+0100\n"
+"Last-Translator: Camaleón <noelamac@gmail.com>\n"
+"Language-Team: Debian Spanish <debian-l10n-spanish@lists.debian.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid "Use plugdev group?"
+msgstr "¿Desea utilizar el grupo plugdev?"
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"Please specify how non-root users should be given access to the Logitech "
+"receiver devices."
+msgstr ""
+"Indique cómo deberían acceder los usuarios sin permisos de administrador a "
+"los dispositivos de recepción de Logitech."
+
+#. Type: boolean
+#. Description
+#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
+#: ../solaar.templates:2001
+msgid ""
+"If systemd or consolekit are in use, they can apply ACLs to make them "
+"accessible via Solaar for the user logged in on the current seat. Right now, "
+"${SEAT_DAEMON_STATUS} daemon is running."
+msgstr ""
+"Si systemd o consolekit se encuentran en uso pueden aplicar listas de "
+"control de acceso (ACL) para que sean accesibles al usuario que haya "
+"iniciado la sesión en el equipo a través de Solaar. Actualmente se encuentra "
+"en ejecución el demonio ${SEAT_DAEMON_STATUS}."
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"If neither of these daemons is in use, or if the receiver should also be "
+"accessible for remotely logged in users, it is possible to grant access for "
+"members of the \"plugdev\" system group."
+msgstr ""
+"Si ninguno de estos demonios se encuentra en uso o si el dispositivo de recepción "
+"también debería ser accessible para los usuarios que hayan iniciado una "
+"sesión remota, puede permitir el acceso a los miembros del grupo del sistema "
+"«plugdev»."
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"If you do use the \"plugdev\" group, don't forget to make sure all the "
+"appropriate users are members of that group. You can add new members to the "
+"group by running, as root:\n"
+"    adduser <username> plugdev\n"
+"For the group membership to take effect, the affected users need to log out "
+"and back in again."
+msgstr ""
+"Si utiliza el grupo «plugdev» asegúrese de que todos los usuarios que lo "
+"requieran sean miembros de ese grupo. Puede añadir nuevos miembros al grupo "
+"ejecutando como root:\n"
+"    adduser <nombre_de_usuario> plugdev\n"
+"Para que la asignación al grupo se aplique correctamente, los usuarios "
+"afectados necesitan reiniciar la sesión."

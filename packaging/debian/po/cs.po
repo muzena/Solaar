@@ -1,0 +1,75 @@
+# Czech PO debconf template translation of solaar.
+# Copyright (C) 2014 Michal Simunek <michal.simunek@gmail.com>
+# This file is distributed under the same license as the solaar package.
+# Michal Simunek <michal.simunek@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: solaar 0.9.2+dfsg-4\n"
+"Report-Msgid-Bugs-To: solaar@packages.debian.org\n"
+"POT-Creation-Date: 2014-10-10 07:11+0200\n"
+"PO-Revision-Date: 2014-10-24 09:15+0200\n"
+"Last-Translator: Michal Simunek <michal.simunek@gmail.com>\n"
+"Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid "Use plugdev group?"
+msgstr "Použít skupinu plugdev?"
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"Please specify how non-root users should be given access to the Logitech "
+"receiver devices."
+msgstr ""
+"Zadejte prosím, jaký má být uživatelům, mimo uživatele root, umožněn přístup "
+"k přijímačům Logitech."
+
+#. Type: boolean
+#. Description
+#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
+#: ../solaar.templates:2001
+msgid ""
+"If systemd or consolekit are in use, they can apply ACLs to make them "
+"accessible via Solaar for the user logged in on the current seat. Right now, "
+"${SEAT_DAEMON_STATUS} daemon is running."
+msgstr ""
+"Pokud se používá systemd či consolekit, mohou pro uživatele přihlášené k "
+"aktuální relaci požadovat oprávnění, aby jim byly zpřístupněné přes Solaar. "
+"Nyní jsou spuštěni deamoni ${SEAT_DAEMON_STATUS}."
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"If neither of these daemons is in use, or if the receiver should also be "
+"accessible for remotely logged in users, it is possible to grant access for "
+"members of the \"plugdev\" system group."
+msgstr ""
+"Pokud se žádný z těchto daemonů nepoužívá, nebo pokud má být přijímač "
+"přístupný vzdáleně přihlášeným uživatelům, je možné přidělit oprávnění pro "
+"členy systémové skupiny \"plugdev\"."
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"If you do use the \"plugdev\" group, don't forget to make sure all the "
+"appropriate users are members of that group. You can add new members to the "
+"group by running, as root:\n"
+"    adduser <username> plugdev\n"
+"For the group membership to take effect, the affected users need to log out "
+"and back in again."
+msgstr ""
+"Pokud použijete skupinu \"plugdev\", nezapomeňte se přesvědčit, že jsou "
+"všichni příslušní uživatelé členy této skupiny. Nové členy do skupiny můžete "
+"přidat spuštěním příkazu jako uživatel root:    adduser <username> plugdev\n"
+"Aby se změny u členů skupiny projevily, je třeba příslušné uživatele "
+"odhlásit a znovu přihlásit."
