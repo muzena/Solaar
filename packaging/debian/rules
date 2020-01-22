@@ -24,7 +24,7 @@ override_dh_auto_install:
 	cp $CURDIR/rules.d/42-logitech-unify-permissions.rules $DESTDIR/lib/udev/rules.d/60-solaar.rules
 	dh_auto_install
 
-#	dh_auto_installoverride_dh_auto_clean:
+override_dh_auto_clean:
 	./tools/clean.sh
 	debconf-updatepo
 	dh_auto_clean
