@@ -16,6 +16,10 @@ override_dh_auto_build:
 	./tools/po-compile.sh
 	dh_auto_build
 
+#override_dh_auto_install:
+#	cp ./rules.d/42-logitech-unify-permissions.rules 
+#	dh_auto_install
+
 override_dh_auto_clean:
 	./tools/clean.sh
 	debconf-updatepo
