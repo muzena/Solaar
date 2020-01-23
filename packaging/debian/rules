@@ -20,7 +20,7 @@ override_dh_auto_build:
 #	cp ./rules.d/42-logitech-unify-permissions.rules 
 #	dh_auto_install
 
-#override_dh_auto_install:
+override_dh_auto_install:
 	dh_auto_install
 	install -pdm755 -p $(DESTDIR)/lib/udev/rules.d
 	#mkdir -p $(PREFIX)/lib/udev/rules.d
