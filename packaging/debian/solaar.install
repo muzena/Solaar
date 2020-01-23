@@ -1,3 +1,4 @@
 debian/solaar.metainfo.xml usr/share/metainfo/
+rules.d/42-logitech-unify-permissions.rules lib/udev/rules.d/60-solaar.rules
 etc/
 usr/
