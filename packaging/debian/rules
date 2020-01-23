@@ -20,12 +20,12 @@ override_dh_auto_build:
 #	cp ./rules.d/42-logitech-unify-permissions.rules 
 #	dh_auto_install
 
-override_dh_auto_install:
-	mkdir -p $(DESTDIR)/lib/udev/rules.d
+#override_dh_auto_install:
+	#mkdir -p $(DESTDIR)/lib/udev/rules.d
 	#mkdir -p $(PREFIX)/lib/udev/rules.d
-	cp $(CURDIR)/rules.d/42-logitech-unify-permissions.rules $(DESTDIR)/lib/udev/rules.d/60-solaar.rules
+	#cp $(CURDIR)/rules.d/42-logitech-unify-permissions.rules $(DESTDIR)/lib/udev/rules.d/60-solaar.rules
 	#cp ./rules.d/42-logitech-unify-permissions.rules $(PREFIX)/lib/udev/rules.d/60-solaar.rules
-	dh_auto_install
+	#dh_auto_install
 
 override_dh_auto_clean:
 	./tools/clean.sh
