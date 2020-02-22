@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- python-mode -*-
 # -*- coding: UTF-8 -*-
 
@@ -48,6 +48,7 @@ def _parse_arguments():
 							help='unifying receiver to use; the first detected receiver if unspecified. Example: /dev/hidraw2')
 	arg_parser.add_argument('--restart-on-wake-up', action='store_true',
 							help='restart Solaar on sleep wake-up (experimental)')
+	arg_parser.add_argument('-w', '--window', choices=('hide','show','only'), help='start with window hidden / showing / only (no tray icon)')
 	arg_parser.add_argument('-V', '--version', action='version', version='%(prog)s ' + __version__)
 	arg_parser.add_argument('--help-actions', action='store_true',
 							help='print help for the optional actions')
@@ -59,6 +60,9 @@ def _parse_arguments():
 	if args.help_actions:
 		_cli.print_help()
 		return
+
+	if args.window is None:
+		args.window = 'hide'
 
 	import logging
 	if args.debug > 0:
@@ -102,10 +106,10 @@ def main():
 		if args.restart_on_wake_up:
 			_upower.watch(listener.start_all, listener.stop_all)
 		else:
-			_upower.watch(listener.ping_all)
+			_upower.watch(lambda: listener.ping_all(True))
 
 		# main UI event loop
-		ui.run_loop(listener.start_all, listener.stop_all)
+		ui.run_loop(listener.start_all, listener.stop_all, args.window!='only', args.window!='hide')
 	except Exception as e:
 		import sys
 		sys.exit('%s: error: %s' % (NAME.lower(), e))

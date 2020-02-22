@@ -33,6 +33,7 @@ from . import hidpp20 as _hidpp20
 from .common import strhex as _strhex
 from .descriptors import DEVICES as _DESCRIPTORS
 from .settings_templates import check_feature_settings as _check_feature_settings
+from .base_usb import product_information as _product_information
 
 _R = _hidpp10.REGISTERS
 
@@ -311,7 +312,7 @@ class PairedDevice(object):
 	__bool__ = __nonzero__ = lambda self: self.wpid is not None and self.number in self.receiver
 
 	def __str__(self):
-		return '<PairedDevice(%d,%s,%s)>' % (self.number, self.wpid, self.codename or '?')
+		return '<PairedDevice(%d,%s,%s,%s)>' % (self.number, self.wpid, self.codename or '?', self.serial)
 	__unicode__ = __repr__ = __str__
 
 #
@@ -333,33 +334,30 @@ class Receiver(object):
 		self.path = device_info.path
 		# USB product id, used for some Nano receivers
 		self.product_id = device_info.product_id
+		product_info = _product_information(self.product_id)
+		if not product_info:
+			raise Exception("Unknown receiver type", self.product_id)
 
 		# read the serial immediately, so we can find out max_devices
-		# this will tell us if it's a Unifying or Nano receiver
-		if self.product_id != 'c534':
-			serial_reply = self.read_register(_R.receiver_info, 0x03)
-			assert serial_reply
+		serial_reply = self.read_register(_R.receiver_info, 0x03)
+		if serial_reply :
 			self.serial = _strhex(serial_reply[1:5])
 			self.max_devices = ord(serial_reply[6:7])
-		else:
-			self.serial = 0
-			self.max_devices = 6
+			# TODO _properly_ figure out which receivers do and which don't support unpairing
+			# This code supposes that receivers that don't unpair support a pairing request for device index 0
+			self.may_unpair = self.write_register(_R.receiver_pairing) is None
+		else: # handle receivers that don't have a serial number specially (i.e., c534)
+			self.serial = None
+			self.max_devices = product_info.get('max_devices',1)
+			self.may_unpair = product_info.get('may_unpair',False)
 
-		if self.product_id == 'c539' or self.product_id == 'c53a' or self.product_id == 'c53f':
-			self.name = 'Lightspeed Receiver'
-		elif self.max_devices == 6:
-			self.name = 'Unifying Receiver'
-		elif self.max_devices < 6:
-			self.name = 'Nano Receiver'
-		else:
-			raise Exception("unknown receiver type", self.max_devices)
+		self.name = product_info.get('name','')
+		self.re_pairs = product_info.get('re_pairs',False)
 		self._str = '<%s(%s,%s%s)>' % (self.name.replace(' ', ''), self.path, '' if isinstance(self.handle, int) else 'T', self.handle)
-
-		# TODO _properly_ figure out which receivers do and which don't support unpairing
-		self.may_unpair = self.write_register(_R.receiver_pairing) is None
 
 		self._firmware = None
 		self._devices = {}
+		self._remaining_pairings = None
 
 	def close(self):
 		handle, self.handle = self.handle, None
@@ -374,6 +372,15 @@ class Receiver(object):
 		if self._firmware is None and self.handle:
 			self._firmware = _hidpp10.get_firmware(self)
 		return self._firmware
+
+	# how many pairings remain (None for unknown, -1 for unlimited)
+	def remaining_pairings(self,cache=True):
+		if self._remaining_pairings is None or not cache:
+			ps = self.read_register(_R.receiver_connection)
+			if ps is not None:
+				ps = ord(ps[2:3])
+				self._remaining_pairings = ps-5 if ps >= 5 else -1
+		return self._remaining_pairings
 
 	def enable_notifications(self, enable=True):
 		"""Enable or disable device (dis)connection notifications on this
@@ -482,18 +489,25 @@ class Receiver(object):
 				del self._devices[key]
 			return
 
-		action = 0x03
-		reply = self.write_register(_R.receiver_pairing, action, key)
-		if reply:
-			# invalidate the device
+		if self.re_pairs:
+			# invalidate the device, but these receivers don't unpair per se
 			dev.online = False
 			dev.wpid = None
 			if key in self._devices:
 				del self._devices[key]
-			_log.warn("%s unpaired device %s", self, dev)
+			_log.warn("%s removed device %s", self, dev)
 		else:
-			_log.error("%s failed to unpair device %s", self, dev)
-			raise IndexError(key)
+			reply = self.write_register(_R.receiver_pairing, 0x03, key)
+			if reply:
+				# invalidate the device
+				dev.online = False
+				dev.wpid = None
+				if key in self._devices:
+					del self._devices[key]
+				_log.warn("%s unpaired device %s", self, dev)
+			else:
+				_log.error("%s failed to unpair device %s", self, dev)
+				raise IndexError(key)
 
 	def __len__(self):
 		return len([d for d in self._devices.values() if d is not None])

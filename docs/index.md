@@ -3,25 +3,60 @@ title: Solaar
 layout: default
 ---
 
-**Solaar** is a Linux device manager for Logitech's [Unifying][unifying] Receiver
-peripherals. It is able to pair/unpair devices to the receiver, and for most
-devices read battery status.
+**Solaar** is a Linux manager for Logitech's devices that connect via a USB 
+[Unifying][unifying], Lightspeed, or Nano receiver.  
+Solaar does not work with Logitech peripherals that
+use Bluetooth or peripherals from other companies.
 
-It comes in two flavors, command-line and GUI.  Both are able to list the
-devices paired to a Unifying Receiver, show detailed info for each device, and
-also pair/unpair supported devices with the receiver.
+Solaar can be used as a GUI application or via its command-line interface.
+Both interfaces are able to list the devices paired to a receiver and
+show information about each device, including battery status for devices that support this feature.
+Solaar's GUI normally uses an icon in the system tray and starts with its main window hidden.
+If Solaar is invoked with the `--window=show` option Solaar starts with its main window visible.
+If solaar is invoked with the `--window=only` option Solaar does not set up an icon in the
+system tray and also starts with its main window showing.
+For more information on Solaar's command-line interface use the help option,
+as in `solaar --help`.
 
-[unifying]: http://logitech.com/promotions/6072
+Solaar is able to pair and unpair devices with 
+receivers as supported by the receiver.  Solaar can also control
+some of the changeable features of devices, such as smooth scrolling or
+function key behavior.  
+For more information on the capabilities of Solaar see
+[docs/capabilities.md](https://pwr-solaar.github.io/Solaar/capabilities).
+
+Solaar does not process normal input from the devices.  Solaar is thus unable
+to fix problems that arise from incorrect handling of mouse movements or keycodes
+by Linux drivers or other software.
+
+Solaar has progressed past version 1.0.  Problems with earlier versions should
+not be reported as bugs.  Instead upgrade to a recent version or manually install
+the current version from [GitHub](https://github.com/pwr-Solaar/Solaar).
+Some of the capabilities of Solaar have been developed by observing the behavior of
+Logitech receivers and devices and generalizing from these observations.
+If your Logitech receiver or device behaves in a strange way this may be caused by
+an incorrect behavior generalization.
+Please report such experiences by creating an issue in 
+[the Solaar repository](https://github.com/pwr-Solaar/Solaar/issues).
+
+[unifying]: https://en.wikipedia.org/wiki/Logitech_Unifying_receiver
 
 ## Supported Devices
 
-**Solaar** will detect all devices paired with your Unifying Receiver, and at
-the very least display some basic information about them.
+**Solaar** will detect all devices paired with your Unifying, Lightspeed, or Nano
+receiver, and at the very least display some basic information about them.
+Solaar can pair and unpair a Logitech device showing the Unifying logo (Solaar's version of the [logo][logo])
+with any Unifying receiver and can pair and unpair devices with Lightspeed receivers.
+Solaar can pair some Logitech
+devices with Logitech Nano receivers but not all Logitech devices can be
+paired with Nano receivers.  Logitech devices without a Unifying logo
+generally cannot be paired with Unifying receivers.
 
 For some devices, extra settings (usually not available through the standard
-Linux system configuration) are supported. For a full list of supported devices
+Linux system configuration) are supported. For a list of supported devices
 and their features, see [docs/devices.md](https://pwr-solaar.github.io/Solaar/devices).
 
+[logo]: https://pwr-solaar.github.io/Solaar/assets/solaar.svg
 
 ## Pre-built packages
 
@@ -29,21 +64,23 @@ Pre-built packages are available for a few Linux distros.
 
 * Arch `solaar` package in the [community repository][arch]
 * Debian 7 (Wheezy) or higher: packages in this [repository](https://pwr-solaar.github.io/Solaar/debian)
-* Ubuntu/Kubuntu 16.04+: use the `solaar-gnome3` and/or `solaar` package from [universe repository][universe repository]
-* Ubuntu/Kubuntu 12.04 to 14.04: use `solaar` package from [ppa:daniel.pavel/solaar][ppa]
-
-The `solaar` package uses a standard system tray implementation; to ensure
-integration with *gnome-shell* or *Unity*, install `solaar-gnome3`.
-
-* an [Arch AUR solaar-git package][arch-git], courtesy of Maxime Poulin
+* Ubuntu/Kubuntu 16.04+: use the `solaar` package from [universe repository][universe repository]
+* Ubuntu/Kubuntu stable packages: use the `solaar` package from [Solaar stable ppa][ppa2]
+* Ubuntu/Kubuntu git build packages: use the `solaar` package from [Solaar git ppa][ppa1]
 * a [Fedora package][fedora], courtesy of Eric Smith
 * a [Gentoo package][gentoo], courtesy of Carlos Silva and Tim Harder
 * a [Mageia package][mageia], courtesy of David Geiger
 * an [OpenSUSE rpm][opensuse], courtesy of Mathias Homann
+* an [Ubuntu/Kubuntu git and stable ppa][ppa3], courtesy of [gogo][ppa4]
 
+The `solaar` package uses a standard system tray implementation; `solaar-gnome3` is no longer required for `gnome` or `unity` integration.
+
+[ppa4]: https://launchpad.net/~trebelnik-stefina
+[ppa3]: https://launchpad.net/~solaar-unifying
+[ppa2]: https://launchpad.net/~solaar-unifying/+archive/ubuntu/stable
+[ppa1]: https://launchpad.net/~solaar-unifying/+archive/ubuntu/ppa
 [ppa]: http://launchpad.net/~daniel.pavel/+archive/solaar
 [arch]: https://www.archlinux.org/packages/community/any/solaar/
-[arch-git]: https://aur.archlinux.org/packages/solaar-git/
 [fedora]: https://apps.fedoraproject.org/packages/solaar
 [gentoo]: https://packages.gentoo.org/packages/app-misc/solaar
 [mageia]: http://mageia.madb.org/package/show/release/cauldron/application/0/name/solaar
@@ -53,8 +90,7 @@ integration with *gnome-shell* or *Unity*, install `solaar-gnome3`.
 
 ## Manual installation
 
-See [docs/installation.md](https://pwr-solaar.github.io/Solaar/installation) for the step-by-step
-procedure for manual installation.
+See [docs/installation.md](https://pwr-solaar.github.io/Solaar/installation) for the step-by-step procedure for manual installation.
 
 
 ## Known Issues
@@ -62,16 +98,9 @@ procedure for manual installation.
 - KDE/Kubuntu: if some icons appear broken in the application, make sure you've
   properly configured the Gtk theme and icon theme in KDE's control panel.
 
-- Some devices using the [Nano Receiver][nano] (which is very similar to the
-  Unifying Receiver) are supported, but not all. For details, see
-  [docs/devices.md](https://pwr-solaar.github.io/Solaar/devices).
-
-- Running the command-line application (`bin/solaar-cli`) while the GUI
+- Running the command-line application while the GUI
   application is also running *may* occasionally cause either of them to become
-  confused about the state of the devices. I haven't encountered this often
-  enough to be able to be able to diagnose it properly yet.
-
-[nano]: http://support.logitech.com/en_us/parts
+  confused about the state of the devices.
 
 
 ## License

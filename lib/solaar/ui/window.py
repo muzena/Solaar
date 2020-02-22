@@ -19,7 +19,7 @@
 
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-from logging import getLogger # , DEBUG as _DEBUG
+from logging import getLogger, DEBUG as _DEBUG
 _log = getLogger(__name__)
 del getLogger
 
@@ -232,7 +232,7 @@ def _create_info_panel():
 
 def _create_tree(model):
 	tree = Gtk.TreeView()
-	tree.set_size_request(240, 0)
+	tree.set_size_request(330, 0) # enough width for simple setups
 	tree.set_headers_visible(False)
 	tree.set_show_expanders(False)
 	tree.set_level_indentation(20)
@@ -251,7 +251,6 @@ def _create_tree(model):
 	icon_column = Gtk.TreeViewColumn('Icon', icon_cell_renderer)
 	icon_column.add_attribute(icon_cell_renderer, 'sensitive', _COLUMN.ACTIVE)
 	icon_column.add_attribute(icon_cell_renderer, 'icon-name', _COLUMN.ICON)
-	icon_column.set_fixed_width(1)
 	tree.append_column(icon_column)
 
 	name_cell_renderer = Gtk.CellRendererText()
@@ -276,7 +275,6 @@ def _create_tree(model):
 	battery_column = Gtk.TreeViewColumn('status icon', battery_cell_renderer)
 	battery_column.add_attribute(battery_cell_renderer, 'sensitive', _COLUMN.ACTIVE)
 	battery_column.add_attribute(battery_cell_renderer, 'icon-name', _COLUMN.STATUS_ICON)
-	battery_column.set_fixed_width(1)
 	tree.append_column(battery_column)
 
 	return tree
@@ -302,15 +300,18 @@ def _create_window_layout():
 	tree_panel.pack_start(_details, False, False, 0)
 
 	panel = Gtk.Box.new(Gtk.Orientation.HORIZONTAL, 16)
-	panel.pack_start(tree_panel, False, False, 0)
+	panel.pack_start(tree_panel, True, True, 0)
 	panel.pack_start(_info, True, True, 0)
 	panel.pack_start(_empty, True, True, 0)
 
-	about_button = _new_button(_("About") + ' ' + NAME, 'help-about',
-					icon_size=_SMALL_BUTTON_ICON_SIZE, clicked=_show_about_window)
-
 	bottom_buttons_box = Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL)
 	bottom_buttons_box.set_layout(Gtk.ButtonBoxStyle.START)
+	bottom_buttons_box.set_spacing(20)
+	quit_button = _new_button(_("Quit") + ' ' + NAME,  'application-exit', 
+					icon_size=_SMALL_BUTTON_ICON_SIZE, clicked=destroy)
+	bottom_buttons_box.add(quit_button)
+	about_button = _new_button(_("About") + ' ' + NAME, 'help-about',
+					icon_size=_SMALL_BUTTON_ICON_SIZE, clicked=_show_about_window)
 	bottom_buttons_box.add(about_button)
 
 	# solaar_version = Gtk.Label()
@@ -329,7 +330,7 @@ def _create_window_layout():
 	return vbox
 
 
-def _create():
+def _create(delete_action):
 	window = Gtk.Window()
 	window.set_title(NAME)
 	window.set_role('status-window')
@@ -337,8 +338,7 @@ def _create():
 	# window.set_type_hint(Gdk.WindowTypeHint.UTILITY)
 	# window.set_skip_taskbar_hint(True)
 	# window.set_skip_pager_hint(True)
-	window.set_keep_above(True)
-	window.connect('delete-event', _hide)
+	window.connect('delete-event', delete_action)
 
 	vbox = _create_window_layout()
 	window.add(vbox)
@@ -346,10 +346,13 @@ def _create():
 	geometry = Gdk.Geometry()
 	geometry.min_width = 600
 	geometry.min_height = 320
-	geometry.max_width = 800
+	geometry.max_width = 1000
 	geometry.max_height = 600
 	window.set_geometry_hints(vbox, geometry, Gdk.WindowHints.MIN_SIZE | Gdk.WindowHints.MAX_SIZE)
 	window.set_position(Gtk.WindowPosition.CENTER)
+
+	style = window.get_style_context()
+	style.add_class('solaar')
 
 	return window
 
@@ -402,8 +405,8 @@ def _receiver_row(receiver_path, receiver=None):
 		status_icon = None
 		row_data = (receiver_path, 0, True, receiver.name, icon_name, status_text, status_icon, receiver)
 		assert len(row_data) == len(_TREE_SEPATATOR)
-		# if _log.isEnabledFor(_DEBUG):
-		# 	_log.debug("new receiver row %s", row_data)
+		if _log.isEnabledFor(_DEBUG):
+			_log.debug("new receiver row %s", row_data)
 		item = _model.append(None, row_data)
 		if _TREE_SEPATATOR:
 			_model.append(None, _TREE_SEPATATOR)
@@ -435,8 +438,8 @@ def _device_row(receiver_path, device_number, device=None):
 		status_icon = None
 		row_data = (receiver_path, device_number, bool(device.online), device.codename, icon_name, status_text, status_icon, device)
 		assert len(row_data) == len(_TREE_SEPATATOR)
-		# if _log.isEnabledFor(_DEBUG):
-		# 	_log.debug("new device row %s at index %d", row_data, new_child_index)
+		if _log.isEnabledFor(_DEBUG):
+			_log.debug("new device row %s at index %d", row_data, new_child_index)
 		item = _model.insert(receiver_row, new_child_index, row_data)
 
 	return item or None
@@ -570,8 +573,11 @@ def _update_receiver_panel(receiver, panel, buttons, full=False):
 
 	if(receiver.max_devices > 0):
 		paired_text += '\n\n<small>%s</small>' % ngettext('Up to %(max_count)s device can be paired to this receiver.', 'Up to %(max_count)s devices can be paired to this receiver.', receiver.max_devices) % { 'max_count': receiver.max_devices }
-	elif(devices_count > 0):
+	elif devices_count > 0:
 		paired_text += '\n\n<small>%s</small>' % _('Only one device can be paired to this receiver.')
+	pairings = receiver.remaining_pairings(False) 
+	if ( pairings is not None and pairings >= 0 ) :
+		paired_text += '\n<small>%s</small>' % _('This receiver has %d pairing(s) remaining.') % pairings
 
 	panel._count.set_markup(paired_text)
 
@@ -592,11 +598,16 @@ def _update_receiver_panel(receiver, panel, buttons, full=False):
 	# b._insecure.set_visible(False)
 	buttons._unpair.set_visible(False)
 
-	may_pair = receiver.may_unpair and not is_pairing
-	if may_pair and devices_count >= receiver.max_devices:
-		online_devices = tuple(n for n in range(1, receiver.max_devices) if n in receiver and receiver[n].online)
-		may_pair &= len(online_devices) < receiver.max_devices
-	buttons._pair.set_sensitive(may_pair)
+	if ( receiver.may_unpair or receiver.re_pairs ) and not is_pairing and \
+	   ( receiver.remaining_pairings() is None or receiver.remaining_pairings() != 0 ):
+		if not receiver.re_pairs and devices_count >= receiver.max_devices:
+			paired_devices = tuple(n for n in range(1, receiver.max_devices+1) if n in receiver)
+			buttons._pair.set_sensitive(len(paired_devices) < receiver.max_devices)
+		else:
+			buttons._pair.set_sensitive(True)
+	else:
+		buttons._pair.set_sensitive(False)
+
 	buttons._pair.set_visible(True)
 
 
@@ -727,7 +738,7 @@ _empty = None
 _window = None
 
 
-def init():
+def init(show_window,hide_on_close):
 	Gtk.Window.set_default_icon_name(NAME.lower())
 	Gtk.Window.set_default_icon_from_file(_icons.icon_file(NAME.lower()))
 
@@ -737,10 +748,12 @@ def init():
 	_details = _create_details_panel()
 	_info = _create_info_panel()
 	_empty = _create_empty_panel()
-	_window = _create()
+	_window = _create(_hide if hide_on_close else destroy)
+	if show_window:
+		_window.present()
 
 
-def destroy():
+def destroy(_ignore1=None, _ignore2=None):
 	global _model, _tree, _details, _info, _empty, _window
 	w, _window = _window, None
 	w.destroy()

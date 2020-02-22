@@ -30,7 +30,7 @@ from logitech_receiver import (
 def _print_receiver(receiver):
 	paired_count = receiver.count()
 
-	print ('Unifying Receiver')
+	print (receiver.name)
 	print ('  Device path  :', receiver.path)
 	print ('  USB id       : 046d:%s' % receiver.product_id)
 	print ('  Serial       :', receiver.serial)
@@ -38,6 +38,8 @@ def _print_receiver(receiver):
 		print ('    %-11s: %s' % (f.kind, f.version))
 
 	print ('  Has', paired_count, 'paired device(s) out of a maximum of %d.' % receiver.max_devices)
+	if receiver.remaining_pairings() and receiver.remaining_pairings() >= 0 :
+		print ('  Has %d successful pairing(s) remaining.' % receiver.remaining_pairings() )
 
 	notification_flags = _hidpp10.get_notification_flags(receiver)
 	if notification_flags is not None:
@@ -180,7 +182,12 @@ def _print_device(dev):
 				text = 'N/A'
 			print ('     Battery: %s, %s.' % (text, status))
 		else:
-			print ('     Battery status unavailable.')
+			battery_voltage = _hidpp20.get_voltage(dev)
+			if battery_voltage :
+				(voltage, charging, charge_sts, charge_lvl, charge_type) = battery_voltage
+				print ('     Battery: %smV, %s.' % (voltage, 'Charging' if charging else 'Discharging'))
+			else:
+				print ('     Battery status unavailable.')
 	else:
 		print ('     Battery: unknown (device is offline).')
 

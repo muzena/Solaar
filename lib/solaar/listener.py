@@ -195,8 +195,20 @@ class ReceiverListener(_listener.EventsListener):
 		if not device_ready:
 			time.sleep(0.01)
 
-		if n.sub_id == 0x41 and not already_known:
-			dev = self.receiver.register_new_device(n.devnumber, n)
+		if n.sub_id == 0x40 and not already_known:
+			return # disconnecting something that is not known - nothing to do
+
+		if n.sub_id == 0x41:
+			if not already_known:
+				dev = self.receiver.register_new_device(n.devnumber, n)
+			elif self.receiver.status.lock_open and self.receiver.re_pairs and not ord(n.data[0:1]) & 0x40:
+				dev = self.receiver[n.devnumber]
+				del self.receiver[n.devnumber] # get rid of information on device re-paired away
+				self._status_changed(dev) # signal that this device has changed
+				dev = self.receiver.register_new_device(n.devnumber, n)
+				self.receiver.status.new_device = self.receiver[n.devnumber]
+			else:
+				dev = self.receiver[n.devnumber]
 		else:
 			dev = self.receiver[n.devnumber]
 
@@ -279,12 +291,16 @@ def stop_all():
 		for l in listeners:
 			l.join()
 
-
-def ping_all():
+# ping all devices to find out whether they are connected
+# after a resume, the device may have been off
+# so mark its saved status to ensure that the status is pushed to the device when it comes back
+def ping_all(resuming = False):
 	for l in _all_listeners.values():
 		count = l.receiver.count()
 		if count:
 			for dev in l.receiver:
+				if resuming:
+					dev.status._active = False
 				dev.ping()
 				l._status_changed(dev)
 				count -= 1

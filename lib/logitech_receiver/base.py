@@ -44,6 +44,15 @@ _LONG_MESSAGE_SIZE = 20
 _MEDIUM_MESSAGE_SIZE = 15
 _MAX_READ_SIZE = 32
 
+# mapping from report_id to message length
+report_lengths = {
+	0x10: _SHORT_MESSAGE_SIZE,
+	0x11: _LONG_MESSAGE_SIZE,
+	0x20: _MEDIUM_MESSAGE_SIZE,
+	0x21: _MAX_READ_SIZE
+}
+
+
 """Default timeout on read (in seconds)."""
 DEFAULT_TIMEOUT = 4
 # the receiver itself should reply very fast, within 500ms
@@ -83,7 +92,7 @@ from .base_usb import ALL as _RECEIVER_USB_IDS
 def receivers():
 	"""List all the Linux devices exposed by the UR attached to the machine."""
 	for receiver_usb_id in _RECEIVER_USB_IDS:
-		for d in _hid.enumerate(*receiver_usb_id):
+		for d in _hid.enumerate(receiver_usb_id):
 			yield d
 
 
@@ -189,6 +198,18 @@ def read(handle, timeout=DEFAULT_TIMEOUT):
 		return reply[1:]
 
 
+# sanity checks on  message report id and size
+def check_message(data) :
+	assert isinstance(data, bytes), (repr(data), type(data))
+	report_id = ord(data[:1])
+	if report_id in report_lengths:  # is this an HID++ or DJ message?
+		if report_lengths.get(report_id) == len(data):
+			return True
+		else:
+			_log.warn("unexpected message size: report_id %02X message %s" % (report_id, _strhex(data)))
+	return False
+
+
 def _read(handle, timeout):
 	"""Read an incoming packet from the receiver.
 
@@ -207,18 +228,8 @@ def _read(handle, timeout):
 		close(handle)
 		raise NoReceiver(reason=reason)
 
-	if data:
-		assert isinstance(data, bytes), (repr(data), type(data))
+	if data and check_message(data): # ignore messages that fail check
 		report_id = ord(data[:1])
-		assert ((report_id & 0xF0 == 0) or
-				(report_id == 0x10 and len(data) == _SHORT_MESSAGE_SIZE) or
-				(report_id == 0x11 and len(data) == _LONG_MESSAGE_SIZE) or
-				(report_id == 0x20 and len(data) == _MEDIUM_MESSAGE_SIZE)), \
-				"unexpected message size: report_id %02X message %s" % (report_id, _strhex(data))
-		if report_id & 0xF0 == 0x00:
-			if _log.isEnabledFor(_DEBUG):
-				_log.debug("(%s) => r[%02X %s] ignoring unknown report", handle, report_id, _strhex(data[1:]))
-			return
 		devnumber = ord(data[1:2])
 
 		if _log.isEnabledFor(_DEBUG):
@@ -246,18 +257,12 @@ def _skip_incoming(handle, ihandle, notifications_hook):
 			raise NoReceiver(reason=reason)
 
 		if data:
-			assert isinstance(data, bytes), (repr(data), type(data))
-			report_id = ord(data[:1])
-			if _log.isEnabledFor(_DEBUG):
-				assert ((report_id & 0xF0 == 0) or
-						(report_id == 0x10 and len(data) == _SHORT_MESSAGE_SIZE) or
-						(report_id == 0x11 and len(data) == _LONG_MESSAGE_SIZE) or
-						(report_id == 0x20 and len(data) == _MEDIUM_MESSAGE_SIZE)), \
-						"unexpected message size: report_id %02X message %s" % (report_id, _strhex(data))
-			if notifications_hook and report_id & 0xF0:
-				n = make_notification(ord(data[1:2]), data[2:])
-				if n:
-					notifications_hook(n)
+			if check_message(data): # only process messages that pass check
+				report_id = ord(data[:1])
+				if notifications_hook:
+					n = make_notification(ord(data[1:2]), data[2:])
+					if n:
+						notifications_hook(n)
 		else:
 			# nothing in the input buffer, we're done
 			return
@@ -266,9 +271,15 @@ def _skip_incoming(handle, ihandle, notifications_hook):
 def make_notification(devnumber, data):
 	"""Guess if this is a notification (and not just a request reply), and
 	return a Notification tuple if it is."""
+
 	sub_id = ord(data[:1])
 	if sub_id & 0x80 == 0x80:
 		# this is either a HID++1.0 register r/w, or an error reply
+		return
+
+	# regular keyboard key press reports and mouse movement reports are not notifications
+	# it would be better to check for report_id 0x20 but that information is not sent here
+	if len(data) == _MEDIUM_MESSAGE_SIZE-2 and (sub_id==0x02 or sub_id==0x01):
 		return
 
 	address = ord(data[1:2])
@@ -291,6 +302,7 @@ from collections import namedtuple
 _HIDPP_Notification = namedtuple('_HIDPP_Notification', ('devnumber', 'sub_id', 'address', 'data'))
 _HIDPP_Notification.__str__ = lambda self: 'Notification(%d,%02X,%02X,%s)' % (self.devnumber, self.sub_id, self.address, _strhex(self.data))
 _HIDPP_Notification.__unicode__ = _HIDPP_Notification.__str__
+DJ_NOTIFICATION_LENGTH = _MEDIUM_MESSAGE_SIZE - 4 # to allow easy distinguishing of DJ notifications
 del namedtuple
 
 #

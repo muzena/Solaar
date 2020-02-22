@@ -30,12 +30,12 @@ from .settings_templates import RegisterSettings as _RS, FeatureSettings as _FS
 
 from collections import namedtuple
 _DeviceDescriptor = namedtuple('_DeviceDescriptor',
-				('name', 'kind', 'wpid', 'codename', 'protocol', 'registers', 'settings'))
+				('name', 'kind', 'wpid', 'codename', 'protocol', 'registers', 'settings', 'persister'))
 del namedtuple
 
 DEVICES = {}
 
-def _D(name, codename=None, kind=None, wpid=None, protocol=None, registers=None, settings=None):
+def _D(name, codename=None, kind=None, wpid=None, protocol=None, registers=None, settings=None, persister=None):
 	assert name
 
 	if kind is None:
@@ -72,7 +72,7 @@ def _D(name, codename=None, kind=None, wpid=None, protocol=None, registers=None,
 
 	device_descriptor = _DeviceDescriptor(name=name, kind=kind,
 					wpid=wpid, codename=codename, protocol=protocol,
-					registers=registers, settings=settings)
+					registers=registers, settings=settings, persister=persister)
 
 	assert codename not in DEVICES, 'duplicate codename in device descriptors: %s' % (DEVICES[codename], )
 	DEVICES[codename] = device_descriptor
@@ -215,6 +215,11 @@ _D('Wireless Illuminated Keyboard K800', protocol=1.0, wpid='2010',
 							_RS.hand_detection(),
 						],
 				)
+_D('Wireless Illuminated Keyboard K800 new', codename='K800 new', protocol=4.5, wpid='406E',
+				settings=[
+							_FS.fn_swap()
+						],
+				)
 _D('Illuminated Living-Room Keyboard K830', protocol=2.0, wpid='4032',
 				settings=[
 							_FS.new_fn_swap()
@@ -232,7 +237,9 @@ _D('Wireless Mouse M185 new', codename='M185n', protocol=4.5, wpid='4054',
 							_FS.lowres_smooth_scroll(),
 							_FS.pointer_speed(),
 				])
-_D('Wireless Mouse M185/M235', codename='M185/M235', protocol=4.5, wpid='4055',
+# Apparently Logitech uses wpid 4055 for three different mice
+# That's not so strange, as M185 is used on both Unifying-ready and non-Unifying-ready mice
+_D('Wireless Mouse M185/M235/M310', codename='M185/M235/M310', protocol=4.5, wpid='4055',
 				settings=[
 							_FS.lowres_smooth_scroll(),
 							_FS.pointer_speed(),

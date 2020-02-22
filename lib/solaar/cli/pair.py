@@ -57,8 +57,11 @@ def run(receivers, args, find_receiver, _ignore):
 			assert n
 			if n.devnumber == 0xFF:
 				_notifications.process(receiver, n)
-			elif n.sub_id == 0x41 and n.address == 0x04:
+			elif n.sub_id == 0x41: # allow for other protocols! (was and n.address == 0x04)
 				if n.devnumber not in known_devices:
+					receiver.status.new_device = receiver[n.devnumber]
+				elif receiver.re_pairs:
+					del receiver[n.devnumber] # get rid of information on device re-paired away
 					receiver.status.new_device = receiver[n.devnumber]
 
 	timeout = 20  # seconds
@@ -87,5 +90,9 @@ def run(receivers, args, find_receiver, _ignore):
 		dev = receiver.status.new_device
 		print ('Paired device %d: %s (%s) [%s:%s]' % (dev.number, dev.name, dev.codename, dev.wpid, dev.serial))
 	else:
-		error = receiver.status.get(_status.KEYS.ERROR) or 'no device detected?'
-		raise Exception("pairing failed: %s" % error)
+		error = receiver.status.get(_status.KEYS.ERROR)
+		if error :
+			raise Exception("pairing failed: %s" % error)
+		else :
+			print ('Paired a device') # this is better than an error
+
