@@ -10,7 +10,7 @@ PREFIX = /usr
 export PYBUILD_INSTALL_ARGS_python3=--install-lib=$(PREFIX)/share/solaar/lib
 
 %:
-	dh $@ --with=python3 #--buildsystem=pybuild
+	dh $@ --with=python3 --buildsystem=pybuild
 
 override_dh_auto_build:
 	./tools/po-compile.sh
