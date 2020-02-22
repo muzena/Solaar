@@ -7,12 +7,19 @@
 
 PREFIX = /usr
 
-%:
-	# Adding the required helpers
-	dh $@ --with=python3
+export PYBUILD_INSTALL_ARGS_python3=--install-lib=$(PREFIX)/share/solaar/lib
 
-override_dh_auto_install:
-	dh_auto_install -- --prefix=$(PREFIX) --install-lib=$(PREFIX)/share/solaar/lib
+%:
+	dh $@ --with=python3 --buildsystem=pybuild
+
+override_dh_auto_build:
+	./tools/po-compile.sh
+	dh_auto_build
+
+override_dh_auto_clean:
+	./tools/clean.sh
+	debconf-updatepo
+	dh_auto_clean
 
 override_dh_python3:
 	dh_python3 $(PREFIX)/share/solaar/lib

@@ -1,11 +1,4 @@
-version=3
-
-# GitHubRedir generator
-# download url:
-#   http://githubredir.debian.net/github/pwr/Solaar/${tag_name}.tar.gz
-http://githubredir.debian.net/github/pwr/Solaar/ (.*).tar.gz
-
-# official GitHub page
-# download url:
-#   https://github.com/pwr/Solaar/archive/${tag_name}.tar.gz
-#https://github.com/pwr/Solaar/tags .*/(\d.*)\.tar\.gz
+version=4
+opts="filenamemangle=s%(?:.*?)?v?(\d[\d.]*)\.tar\.gz%solaar-$1.tar.gz%,repacksuffix=+dfsg,dversionmangle=s%\+dfsg%%" \
+    https://github.com/pwr/Solaar/tags \
+    (?:.*?/)?v?(\d[\d.]*)\.tar\.gz debian uupdate

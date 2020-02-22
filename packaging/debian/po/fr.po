@@ -1,27 +1,28 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Translation of solaar debconf templates to French.
+# Copyright (C) 2014 Debian French l10n team <debian-l10n-french@lists.debian.org>
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Jean-Pierre Giraud <jean-pierregiraud@neuf.fr>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: solaar\n"
 "Report-Msgid-Bugs-To: solaar@packages.debian.org\n"
 "POT-Creation-Date: 2014-10-10 07:11+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2014-10-12 10:09+0200\n"
+"Last-Translator: Jean-Pierre Giraud <jean-pierregiraud@neuf.fr>\n"
+"Language-Team: French <debian-l10n-french@lists.debian.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 1.5\n"
 
 #. Type: boolean
 #. Description
 #: ../solaar.templates:2001
 msgid "Use plugdev group?"
-msgstr ""
+msgstr "Voulez-vous utiliser le groupe plugdev ?"
 
 #. Type: boolean
 #. Description
@@ -30,6 +31,8 @@ msgid ""
 "Please specify how non-root users should be given access to the Logitech "
 "receiver devices."
 msgstr ""
+"Veuillez indiquer comment les utilisateurs non privilégiés auront accès au "
+"récepteur Logitech."
 
 #. Type: boolean
 #. Description
@@ -40,6 +43,9 @@ msgid ""
 "accessible via Solaar for the user logged in on the current seat. Right now, "
 "${SEAT_DAEMON_STATUS} daemon is running."
 msgstr ""
+"Si vous utilisez systemd ou consolekit, des listes de contrôle d'accès "
+"(« ACL ») permettent à l'utilisateur connecté localement d'y accéder avec "
+"Solaar. Actuellement, le démon ${SEAT_DAEMON_STATUS} est en fonctionnement."
 
 #. Type: boolean
 #. Description
@@ -49,6 +55,9 @@ msgid ""
 "accessible for remotely logged in users, it is possible to grant access for "
 "members of the \"plugdev\" system group."
 msgstr ""
+"Si vous n'utilisez aucun de ces démons ou si des utilisateurs distants "
+"doivent aussi accéder au récepteur, il est possible de donner accès aux "
+"membres du groupe « plugdev »."
 
 #. Type: boolean
 #. Description
@@ -61,3 +70,10 @@ msgid ""
 "For the group membership to take effect, the affected users need to log out "
 "and back in again."
 msgstr ""
+"Si vous utilisez le groupe « plugdev », n'oubliez pas de vérifier que tous "
+"les utilisateurs concernés appartiennent à ce groupe. De nouveaux membres "
+"peuvent être ajoutés au groupe en exécutant, en tant que superutilisateur, "
+"la commande :\n"
+"    adduser <username> plugdev\n"
+"Pour que la prise en compte de l'appartenance au groupe soit effective, les "
+"utilisateurs concernés doivent se déconnecter puis se reconnecter."

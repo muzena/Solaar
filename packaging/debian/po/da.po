@@ -1,27 +1,26 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Dansih translation solaar.
+# Copyright (C) 2014 solaar & nedenstående oversættere.
+# This file is distributed under the same license as the solaar package.
+# Joe Hansen <joedalton2@yahoo.dk>, 2014.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: solaar\n"
 "Report-Msgid-Bugs-To: solaar@packages.debian.org\n"
 "POT-Creation-Date: 2014-10-10 07:11+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2014-10-12 17:30+01:00\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
+"Language-Team: Danish <debian-l10n-danish@lists.debian.org>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Type: boolean
 #. Description
 #: ../solaar.templates:2001
 msgid "Use plugdev group?"
-msgstr ""
+msgstr "Brug plugdev-gruppe?"
 
 #. Type: boolean
 #. Description
@@ -30,6 +29,8 @@ msgid ""
 "Please specify how non-root users should be given access to the Logitech "
 "receiver devices."
 msgstr ""
+"Angiv venligst hvordan brugere, der ikke er administratorer, skal have "
+"adgang til Logitech-modtagerenheder."
 
 #. Type: boolean
 #. Description
@@ -40,6 +41,9 @@ msgid ""
 "accessible via Solaar for the user logged in on the current seat. Right now, "
 "${SEAT_DAEMON_STATUS} daemon is running."
 msgstr ""
+"Hvis systemd eller consolekit er i brug, så kan de anvende ACL'er til at "
+"gøre dem tilgængelige via Solaar for brugeren logget ind på det nuværende "
+"sæde. Lige nu, kører dæmonen ${SEAT_DAEMON_STATUS}."
 
 #. Type: boolean
 #. Description
@@ -49,6 +53,9 @@ msgid ""
 "accessible for remotely logged in users, it is possible to grant access for "
 "members of the \"plugdev\" system group."
 msgstr ""
+"Hvis ingen af disse dæmoner er i brug, eller hvis modtageren også skal være "
+"tilgængelig for eksternt indloggede brugere, er det muligt at give adgang "
+"for medlemmer i systemgruppen »plugdev«."
 
 #. Type: boolean
 #. Description
@@ -61,3 +68,9 @@ msgid ""
 "For the group membership to take effect, the affected users need to log out "
 "and back in again."
 msgstr ""
+"Hvis du bruger gruppen »plugdev«, så glem ikke at sikre dig, at alle de "
+"ønskede brugere er medlemmer af den gruppe. Du kan tilføje nye medlemmer til "
+"gruppen ved at køre, som administrator:\n"
+"    adduser <brugernavn> plugdev\n"
+"For at gruppemedlemsskabet træder i kraft, skal de påvirkede brugere logge "
+"ud og ind igen."

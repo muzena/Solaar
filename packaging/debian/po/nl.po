@@ -1,0 +1,86 @@
+# Dutch translation of solaar debconf templates.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the solaar package.
+# Frans Spiesschaert <Frans.Spiesschaert@yucom.be>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: solaar\n"
+"Report-Msgid-Bugs-To: solaar@packages.debian.org\n"
+"POT-Creation-Date: 2014-10-10 07:11+0200\n"
+"PO-Revision-Date: 2014-10-20 20:51+0200\n"
+"Last-Translator: Frans Spiesschaert <Frans.Spiesschaert@yucom.be>\n"
+"Language-Team: Debian Dutch l10n Team <debian-l10n-dutch@lists.debian.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid "Use plugdev group?"
+msgstr "De plugdev-groep gebruiken?"
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"Please specify how non-root users should be given access to the Logitech "
+"receiver devices."
+msgstr ""
+"Gelieve te specificeren hoe aan gewone gebruikers toegang tot de Logitech-"
+"ontvangers moet gegeven worden."
+
+#. Type: boolean
+#. Description
+#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
+#: ../solaar.templates:2001
+msgid ""
+"If systemd or consolekit are in use, they can apply ACLs to make them "
+"accessible via Solaar for the user logged in on the current seat. Right now, "
+"${SEAT_DAEMON_STATUS} daemon is running."
+msgstr ""
+"Indien systemd of consolekit actief zijn, kunnen zij ACL's gebruiken om hen "
+"via Solaar toegankelijk te maken voor de gebruiker die momenteel aangemeld "
+"is. Momenteel is de achtergronddienst ${SEAT_DAEMON_STATUS} actief."
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"If neither of these daemons is in use, or if the receiver should also be "
+"accessible for remotely logged in users, it is possible to grant access for "
+"members of the \"plugdev\" system group."
+msgstr ""
+"Indien geen van beide achtergronddiensten actief is, of indien de ontvanger "
+"ook toegankelijk zou moeten zijn voor gebruikers die extern aangemeld zijn, "
+"is het mogelijk om de toegang te verlenen aan de leden van de systeemgroep "
+"\"plugdev\"."
+
+#. Type: boolean
+#. Description
+#: ../solaar.templates:2001
+msgid ""
+"If you do use the \"plugdev\" group, don't forget to make sure all the "
+"appropriate users are members of that group. You can add new members to the "
+"group by running, as root:\n"
+"    adduser <username> plugdev\n"
+"For the group membership to take effect, the affected users need to log out "
+"and back in again."
+msgstr ""
+"Indien u van de groep \"plugdev\" gebruik maakt, mag u niet vergeten om na "
+"te gaan of alle geëigende gebruikers lid zijn van die groep. U kunt nieuwe "
+"leden toevoegen aan de groep door als systeembeheerder het volgende commando "
+"te geven:\n"
+"    adduser <username> plugdev\n"
+"Het lidmaatschap wordt pas effectief nadat de betreffende gebruiker zich "
+"afgemeld en nadien terug aangemeld heeft."
+
+#~ msgid ""
+#~ "By default, the Logitech receiver devices are only accessible by the root "
+#~ "user."
+#~ msgstr ""
+#~ "Standaard heeft enkel de systeembeheerder toegang tot de ontvangapparaten "
+#~ "van Logitech."
