@@ -1,3 +1,7 @@
 debian/solaar.metainfo.xml usr/share/metainfo/
 share/applications/solaar.desktop etc/xdg/autostart/
-usr/
+usr/bin/
+usr/share/solaar/
+usr/share/locale/
+usr/share/icons/hicolor/scalable/apps/
+usr/share/applications/
