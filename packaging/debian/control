@@ -5,6 +5,7 @@ Priority: optional
 Build-Depends: debhelper (>= 9)
 Build-Depends-Indep: dh-python,
                      gir1.2-gtk-3.0,
+                     quilt,
                      po-debconf,
                      python3,
                      python3-gi,
