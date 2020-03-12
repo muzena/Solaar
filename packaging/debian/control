@@ -2,14 +2,14 @@ Source: solaar
 Maintainer: Stephen Kitt <skitt@debian.org>
 Section: misc
 Priority: optional
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper-compat (= 12)
 Build-Depends-Indep: dh-python,
                      gir1.2-gtk-3.0,
                      po-debconf,
                      python3,
                      python3-gi,
                      python3-pyudev
-Standards-Version: 3.9.4
+Standards-Version: 4.4.1
 Vcs-Browser: https://salsa.debian.org/debian/solaar
 Vcs-Git: https://salsa.debian.org/debian/solaar.git
 Homepage: https://pwr-solaar.github.io/Solaar/
@@ -26,7 +26,23 @@ Recommends: gir1.2-notify-0.7,
             python3-dbus,
             upower
 Suggests: gir1.2-appindicator3-0.1,
+          solaar-gnome3 (= ${source:Version})
 Description: Logitech Unifying Receiver peripherals manager for Linux
  Solaar is a Linux device manager for Logitech's Unifying Receiver wireless
  peripherals. It is able to pair/unpair devices to the receiver, and for
  some devices to read battery status.
+
+Package: solaar-gnome3
+Architecture: all
+Section: gnome
+Depends: ${misc:Depends},
+         solaar (= ${source:Version}),
+         gir1.2-appindicator3-0.1,
+         gnome-shell | unity
+Enhances: solaar
+Description: GNOME Shell/Unity integration for Solaar
+ Solaar is a Linux device manager for Logitech's Unifying Receiver wireless
+ peripherals. It is able to pair/unpair devices to the receiver, and for
+ some devices to read battery status.
+ .
+ This metapackage ensures integration with GNOME Shell/Unity.
