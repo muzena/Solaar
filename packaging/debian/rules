@@ -2,7 +2,7 @@
 # -*- makefile -*-
 
 # Uncomment this to turn on verbose mode.
-export DH_VERBOSE=1
+#export DH_VERBOSE=1
 #export DH_OPTIONS=-v
 
 PREFIX = /usr
@@ -17,7 +17,6 @@ override_dh_auto_build:
 	dh_auto_build
 
 override_dh_auto_install:
-	install -pdm755 $(CURDIR)/usr/share/pixmaps
 	install -Dm644 $(CURDIR)/rules.d/42-logitech-unify-permissions.rules $(CURDIR)/debian/solaar/lib/udev/rules.d/60-solaar.rules
 	
 override_dh_auto_clean:
