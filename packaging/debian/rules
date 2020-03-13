@@ -4,6 +4,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 #export DH_OPTIONS=-v
+eexport DESTDIR=$(CURDIR)/debian
 
 PREFIX = /usr
 
@@ -24,7 +25,7 @@ override_dh_auto_install:
 	dh_auto_install
 	install -pdm755 $(DESTDIR)/lib/udev/rules.d
 	#mkdir -p $(PREFIX)/lib/udev/rules.d
-	install -Dm644 $(CURDIR)/rules.d/42-logitech-unify-permissions.rules $(DESTDIR)/lib/udev/rules.d/60-solaar.rules
+	install -Dm644 $(CURDIR)/rules.d/42-logitech-unify-permissions.rules $(DESTDIR)/solaar/lib/udev/rules.d/60-solaar.rules
 	#cp ./rules.d/42-logitech-unify-permissions.rules $(PREFIX)/lib/udev/rules.d/60-solaar.rules
 	#dh_auto_install
 
