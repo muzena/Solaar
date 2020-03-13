@@ -20,13 +20,13 @@ Package: solaar
 Architecture: all
 Depends: ${misc:Depends},
          ${debconf:Depends},
-         udev,
+         gir1.2-appindicator3-0.1,
          passwd | adduser,
+         udev,
          ${python3:Depends}
 Recommends: gir1.2-notify-0.7,
             python3-dbus,
             upower
-Suggests: gir1.2-appindicator3-0.1
 Description: Logitech Unifying Receiver peripherals manager for Linux
  Solaar is a Linux device manager for Logitech's Unifying Receiver wireless
  peripherals. It is able to pair/unpair devices to the receiver, and for
