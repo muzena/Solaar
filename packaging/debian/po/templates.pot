@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: solaar\n"
-"Report-Msgid-Bugs-To: solaar@packages.debian.org\n"
-"POT-Creation-Date: 2014-10-10 07:11+0200\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-16 12:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,42 +17,38 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#. flag:comment:3
+#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
+#: ../solaar.templates:15
 msgid "Use plugdev group?"
 msgstr ""
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "Please specify how non-root users should be given access to the Logitech "
 "receiver devices."
 msgstr ""
 
-#. Type: boolean
 #. Description
-#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "If systemd or consolekit are in use, they can apply ACLs to make them "
 "accessible via Solaar for the user logged in on the current seat. Right now, "
 "${SEAT_DAEMON_STATUS} daemon is running."
 msgstr ""
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "If neither of these daemons is in use, or if the receiver should also be "
 "accessible for remotely logged in users, it is possible to grant access for "
 "members of the \"plugdev\" system group."
 msgstr ""
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "If you do use the \"plugdev\" group, don't forget to make sure all the "
 "appropriate users are members of that group. You can add new members to the "

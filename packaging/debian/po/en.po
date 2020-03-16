@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: solaar\n"
-"Report-Msgid-Bugs-To: solaar@packages.debian.org\n"
-"POT-Creation-Date: 2014-10-10 07:11+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-16 12:02+0100\n"
 "PO-Revision-Date: 2013-06-17 16:01+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,29 +17,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#. flag:comment:3
+#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
+#: ../solaar.templates:15
 msgid "Use plugdev group?"
 msgstr "Use plugdev group?"
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "Please specify how non-root users should be given access to the Logitech "
 "receiver devices."
 msgstr ""
 
-#. Type: boolean
 #. Description
-#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 #, fuzzy
-#| msgid ""
-#| "To allow access to regular users (through solaar), the needed ACLs can be "
-#| "applied, either by the ConsoleKit or systemd daemon, to the current seat "
-#| "(logged-in user). Right now, ${SEAT_DAEMON_STATUS} daemon is running."
 msgid ""
 "If systemd or consolekit are in use, they can apply ACLs to make them "
 "accessible via Solaar for the user logged in on the current seat. Right now, "
@@ -49,14 +43,9 @@ msgstr ""
 "applied, either by the ConsoleKit or systemd daemon, to the current seat "
 "(logged-in user). Right now, ${SEAT_DAEMON_STATUS} daemon is running."
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 #, fuzzy
-#| msgid ""
-#| "If neither of these daemons is installed on your system, or you want to "
-#| "make the receiver accessible to ssh logged-in through ssh, members of the "
-#| "'plugdev' system group can be given access to the receiver devices."
 msgid ""
 "If neither of these daemons is in use, or if the receiver should also be "
 "accessible for remotely logged in users, it is possible to grant access for "
@@ -66,17 +55,9 @@ msgstr ""
 "the receiver accessible to ssh logged-in through ssh, members of the "
 "'plugdev' system group can be given access to the receiver devices."
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 #, fuzzy
-#| msgid ""
-#| "If you do use the 'plugdev' group, don't forget to make sure all your "
-#| "desktop users are members of the plugdev system group. You can add new "
-#| "members to the group by running, as root:\n"
-#| "    gpasswd --add <username> plugdev\n"
-#| "For the group membership to take effect, the affected users have to log-"
-#| "out and log-in again."
 msgid ""
 "If you do use the \"plugdev\" group, don't forget to make sure all the "
 "appropriate users are members of that group. You can add new members to the "

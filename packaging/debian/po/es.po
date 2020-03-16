@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: solaar\n"
-"Report-Msgid-Bugs-To: solaar@packages.debian.org\n"
-"POT-Creation-Date: 2014-10-10 07:11+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-16 12:02+0100\n"
 "PO-Revision-Date: 2014-12-05 16:49+0100\n"
 "Last-Translator: Camaleón <noelamac@gmail.com>\n"
 "Language-Team: Debian Spanish <debian-l10n-spanish@lists.debian.org>\n"
@@ -42,15 +42,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Virtaal 0.7.1\n"
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#. flag:comment:3
+#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
+#: ../solaar.templates:15
 msgid "Use plugdev group?"
 msgstr "¿Desea utilizar el grupo plugdev?"
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "Please specify how non-root users should be given access to the Logitech "
 "receiver devices."
@@ -58,10 +58,8 @@ msgstr ""
 "Indique cómo deberían acceder los usuarios sin permisos de administrador a "
 "los dispositivos de recepción de Logitech."
 
-#. Type: boolean
 #. Description
-#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "If systemd or consolekit are in use, they can apply ACLs to make them "
 "accessible via Solaar for the user logged in on the current seat. Right now, "
@@ -72,22 +70,20 @@ msgstr ""
 "iniciado la sesión en el equipo a través de Solaar. Actualmente se encuentra "
 "en ejecución el demonio ${SEAT_DAEMON_STATUS}."
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "If neither of these daemons is in use, or if the receiver should also be "
 "accessible for remotely logged in users, it is possible to grant access for "
 "members of the \"plugdev\" system group."
 msgstr ""
-"Si ninguno de estos demonios se encuentra en uso o si el dispositivo de recepción "
-"también debería ser accessible para los usuarios que hayan iniciado una "
-"sesión remota, puede permitir el acceso a los miembros del grupo del sistema "
-"«plugdev»."
+"Si ninguno de estos demonios se encuentra en uso o si el dispositivo de "
+"recepción también debería ser accessible para los usuarios que hayan "
+"iniciado una sesión remota, puede permitir el acceso a los miembros del "
+"grupo del sistema «plugdev»."
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "If you do use the \"plugdev\" group, don't forget to make sure all the "
 "appropriate users are members of that group. You can add new members to the "

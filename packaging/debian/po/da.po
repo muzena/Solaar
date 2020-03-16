@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: solaar\n"
-"Report-Msgid-Bugs-To: solaar@packages.debian.org\n"
-"POT-Creation-Date: 2014-10-10 07:11+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-16 12:02+0100\n"
 "PO-Revision-Date: 2014-10-12 17:30+01:00\n"
 "Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
 "Language-Team: Danish <debian-l10n-danish@lists.debian.org>\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#. flag:comment:3
+#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
+#: ../solaar.templates:15
 msgid "Use plugdev group?"
 msgstr "Brug plugdev-gruppe?"
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "Please specify how non-root users should be given access to the Logitech "
 "receiver devices."
@@ -32,10 +32,8 @@ msgstr ""
 "Angiv venligst hvordan brugere, der ikke er administratorer, skal have "
 "adgang til Logitech-modtagerenheder."
 
-#. Type: boolean
 #. Description
-#. Translators : DO NOT TRANSLATE the ${SEAT_DAEMON_STATUS} variable name
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "If systemd or consolekit are in use, they can apply ACLs to make them "
 "accessible via Solaar for the user logged in on the current seat. Right now, "
@@ -45,9 +43,8 @@ msgstr ""
 "gøre dem tilgængelige via Solaar for brugeren logget ind på det nuværende "
 "sæde. Lige nu, kører dæmonen ${SEAT_DAEMON_STATUS}."
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "If neither of these daemons is in use, or if the receiver should also be "
 "accessible for remotely logged in users, it is possible to grant access for "
@@ -57,9 +54,8 @@ msgstr ""
 "tilgængelig for eksternt indloggede brugere, er det muligt at give adgang "
 "for medlemmer i systemgruppen »plugdev«."
 
-#. Type: boolean
 #. Description
-#: ../solaar.templates:2001
+#: ../solaar.templates:15
 msgid ""
 "If you do use the \"plugdev\" group, don't forget to make sure all the "
 "appropriate users are members of that group. You can add new members to the "
