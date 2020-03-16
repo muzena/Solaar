@@ -26,5 +26,9 @@ override_dh_auto_clean:
 	debconf-updatepo
 	dh_auto_clean
 
+#override_dh_installudev:
+#	ln -sf ../rules.d/42-logitech-unify-permissions.rules debian/solaar.udev
+#	dh_installudev
+
 override_dh_python3:
 	dh_python3 $(PREFIX)/share/solaar/lib
