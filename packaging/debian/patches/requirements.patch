@@ -1,23 +1,23 @@
-From 8706dbd284ba1e31a661b96f9cbc94c9daccfb39 Mon Sep 17 00:00:00 2001
+From 85c37b8ebdb72c5a4d582be083230333a2a75c00 Mon Sep 17 00:00:00 2001
 From: muzena <trebelnik2@gmail.com>
-Date: Thu, 12 Mar 2020 21:46:48 +0100
-Subject: [PATCH] Restore requirements
+Date: Tue, 21 Apr 2020 12:25:37 +0200
+Subject: [PATCH] Update requirements patch
 
 ---
  setup.py | 8 +-------
  1 file changed, 1 insertion(+), 7 deletions(-)
 
 diff --git a/setup.py b/setup.py
-index 3d9f574..6a967cc 100755
+index b632220..e6c546c 100755
 --- a/setup.py
 +++ b/setup.py
-@@ -73,13 +73,7 @@ battery status.
+@@ -55,13 +55,7 @@ battery status.
  			],
  
  		platforms=['linux'],
 -
 -		# sudo apt install python-gi python3-gi \
--		#        gir1.2-gtk-3.0 gir1.2-notify-0.7 gir1.2-appindicator3-0.1
+-		#        gir1.2-gtk-3.0 gir1.2-notify-0.7 gir1.2-ayatanaappindicator3-0.1
 -		# os_requires=['gi.repository.GObject (>= 2.0)', 'gi.repository.Gtk (>= 3.0)'],
 -
 -		python_requires='>=3.2',
