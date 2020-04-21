@@ -20,7 +20,7 @@ Package: solaar
 Architecture: all
 Depends: ${misc:Depends},
          ${debconf:Depends},
-         gir1.2-appindicator3-0.1,
+         gir1.2-appindicator3-0.1 | gir1.2-ayatanaappindicator3-0.1,
          passwd | adduser,
          udev,
          ${python3:Depends}
