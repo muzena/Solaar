@@ -1,4 +1,4 @@
-solaar (1.0.1+dfsg-3) unstable; urgency=medium
+solaar (1.0.2+dfsg-3) unstable; urgency=medium
 
   * Recommend python3-dbus instead of python-dbus. Really closes:
     #938511.
