@@ -1,31 +1,31 @@
-From 85c37b8ebdb72c5a4d582be083230333a2a75c00 Mon Sep 17 00:00:00 2001
+From 79f97f593511db2d9a81d543ecadf25694d00aaf Mon Sep 17 00:00:00 2001
 From: muzena <trebelnik2@gmail.com>
-Date: Tue, 21 Apr 2020 12:25:37 +0200
-Subject: [PATCH] Update requirements patch
+Date: Sat, 18 Jul 2020 00:14:36 +0200
+Subject: [PATCH] Update patch
 
 ---
  setup.py | 8 +-------
  1 file changed, 1 insertion(+), 7 deletions(-)
 
 diff --git a/setup.py b/setup.py
-index b632220..e6c546c 100755
+index 096d85b..b85c9e3 100755
 --- a/setup.py
 +++ b/setup.py
-@@ -55,13 +55,7 @@ battery status.
- 			],
- 
- 		platforms=['linux'],
+@@ -56,13 +56,7 @@ battery status, and show and modify some of the modifiable features of devices.
+         'Topic :: Utilities',
+     ],
+     platforms=['linux'],
 -
--		# sudo apt install python-gi python3-gi \
--		#        gir1.2-gtk-3.0 gir1.2-notify-0.7 gir1.2-ayatanaappindicator3-0.1
--		# os_requires=['gi.repository.GObject (>= 2.0)', 'gi.repository.Gtk (>= 3.0)'],
--
--		python_requires='>=3.2',
--		install_requires=['pyudev (>= 0.13)', ],
-+		requires=['pyudev (>= 0.13)', 'gi.repository.GObject (>= 2.0)', 'gi.repository.Gtk (>= 3.0)'],
- 		package_dir={'': 'lib'},
- 		packages=['hidapi', 'logitech_receiver', 'solaar', 'solaar.ui', 'solaar.cli'],
- 		data_files=list(_data_files()),
+-    # sudo apt install python-gi python3-gi \
+-    #        gir1.2-gtk-3.0 gir1.2-notify-0.7 gir1.2-ayatanaappindicator3-0.1
+-    # os_requires=['gi.repository.GObject (>= 2.0)', 'gi.repository.Gtk (>= 3.0)'],
+-    python_requires='>=3.5',
+-    install_requires=[
+-        'pyudev (>= 0.13)',
++    requires=['pyudev (>= 0.13)', 'gi.repository.GObject (>= 2.0)', 'gi.repository.Gtk (>= 3.0)'],
+     ],
+     package_dir={'': 'lib'},
+     packages=['hidapi', 'logitech_receiver', 'solaar', 'solaar.ui', 'solaar.cli'],
 -- 
-2.17.1
+2.25.1
 
