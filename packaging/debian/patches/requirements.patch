@@ -23,7 +23,7 @@ index 096d85b..b85c9e3 100755
 -    install_requires=[
 -        'pyudev (>= 0.13)',
 +    requires=['pyudev (>= 0.13)', 'gi.repository.GObject (>= 2.0)', 'gi.repository.Gtk (>= 3.0)'],
-     ],
+-    ],
      package_dir={'': 'lib'},
      packages=['hidapi', 'logitech_receiver', 'solaar', 'solaar.ui', 'solaar.cli'],
 -- 
