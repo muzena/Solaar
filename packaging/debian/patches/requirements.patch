@@ -1,17 +1,17 @@
-From 79f97f593511db2d9a81d543ecadf25694d00aaf Mon Sep 17 00:00:00 2001
+From 663ebdb425407a5c61c0a36a94d3f7b58bfcf442 Mon Sep 17 00:00:00 2001
 From: muzena <trebelnik2@gmail.com>
-Date: Sat, 18 Jul 2020 00:14:36 +0200
+Date: Sat, 18 Jul 2020 11:44:28 +0200
 Subject: [PATCH] Update patch
 
 ---
- setup.py | 8 +-------
- 1 file changed, 1 insertion(+), 7 deletions(-)
+ setup.py | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
 
 diff --git a/setup.py b/setup.py
-index 096d85b..b85c9e3 100755
+index 096d85b..0f7ce0a 100755
 --- a/setup.py
 +++ b/setup.py
-@@ -56,13 +56,7 @@ battery status, and show and modify some of the modifiable features of devices.
+@@ -56,14 +56,7 @@ battery status, and show and modify some of the modifiable features of devices.
          'Topic :: Utilities',
      ],
      platforms=['linux'],
@@ -22,10 +22,11 @@ index 096d85b..b85c9e3 100755
 -    python_requires='>=3.5',
 -    install_requires=[
 -        'pyudev (>= 0.13)',
-+    requires=['pyudev (>= 0.13)', 'gi.repository.GObject (>= 2.0)', 'gi.repository.Gtk (>= 3.0)'],
 -    ],
++    requires=['pyudev (>= 0.13)', 'gi.repository.GObject (>= 2.0)', 'gi.repository.Gtk (>= 3.0)'],
      package_dir={'': 'lib'},
      packages=['hidapi', 'logitech_receiver', 'solaar', 'solaar.ui', 'solaar.cli'],
+     data_files=list(_data_files()),
 -- 
 2.25.1
 
