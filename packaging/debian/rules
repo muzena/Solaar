@@ -20,7 +20,10 @@ override_dh_auto_build:
 override_dh_auto_install:
 	dh_auto_install --buildsystem=pybuild #--destdir=$(CURDIR)/debian/solaar/
 	install -Dm644 $(CURDIR)/rules.d/42-logitech-unify-permissions.rules $(DESTDIR)/solaar/lib/udev/rules.d/60-solaar.rules
-	
+
+override_dh_installchangelogs:
+	dh_installchangelogs ChangeLog
+
 override_dh_auto_clean:
 	./tools/clean.sh
 	debconf-updatepo
