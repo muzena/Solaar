@@ -22,6 +22,8 @@ Depends: ${misc:Depends},
          ${debconf:Depends},
          gir1.2-appindicator3-0.1 | gir1.2-ayatanaappindicator3-0.1,
          passwd | adduser,
+         python3-psutil,
+         python3-xlib,
          udev,
          ${python3:Depends}
 Recommends: gir1.2-notify-0.7,
