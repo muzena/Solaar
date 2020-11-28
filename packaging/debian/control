@@ -26,6 +26,7 @@ Depends: ${misc:Depends},
          python3-psutil,
          python3-xlib,
          udev,
+         python-psutil,
          ${python3:Depends}
 Recommends: gir1.2-notify-0.7,
             python3-dbus,
