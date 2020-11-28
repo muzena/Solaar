@@ -1,3 +1,4 @@
 #translation-pt.patch
-requirements.patch
+#requirements.patch
+requirements_new.patch
 #restore-requirements.patch
