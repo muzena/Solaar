@@ -1,0 +1,35 @@
+From 43c77a5488e94574147aac2fe12226d6bb2ff1d1 Mon Sep 17 00:00:00 2001
+From: muzena <trebelnik2@gmail.com>
+Date: Sun, 20 Dec 2020 10:55:42 +0100
+Subject: [PATCH] Update patch
+
+---
+ setup.py | 12 +-----------
+ 1 file changed, 1 insertion(+), 11 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 597635f..7017eb9 100755
+--- a/setup.py
++++ b/setup.py
+@@ -54,17 +54,7 @@ battery status, and show and modify some of the modifiable features of devices.
+         'Topic :: Utilities',
+     ],
+     platforms=['linux'],
+-
+-    # sudo apt install python-gi python3-gi \
+-    #        gir1.2-gtk-3.0 gir1.2-notify-0.7 gir1.2-ayatanaappindicator3-0.1
+-    # os_requires=['gi.repository.GObject (>= 2.0)', 'gi.repository.Gtk (>= 3.0)'],
+-    python_requires='>=3.6',
+-    install_requires=[
+-        'pyudev (>= 0.13)',
+-        'PyYAML (>= 5.1)',
+-        'python-xlib (>= 0.27)',
+-        'psutil (>= 5.6.0)',
+-    ],
++    requires=['pyudev (>= 0.13)', 'gi.repository.GObject (>= 2.0)', 'gi.repository.Gtk (>= 3.0)'],
+     package_dir={'': 'lib'},
+     packages=['hidapi', 'logitech_receiver', 'solaar', 'solaar.ui', 'solaar.cli'],
+     data_files=list(_data_files()),
+-- 
+2.25.1
+
